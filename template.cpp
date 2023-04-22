@@ -47,6 +47,16 @@ mt19937 RNG(chrono::steady_clock::now().time_since_epoch().count());
 #define SHUF(v) shuffle(all(v), RNG);
 // Use mt19937_64 for 64 bit random numbers.
 
+ll bin_exp(ll a, ll b){
+    ll ans=1;
+    while(b>0){
+        if(b&1) ans = (ans*a)%MOD;
+        a= (a*a)%MOD;
+        b>>=1;
+    }
+    return ans;
+}
+
 void solve(){
 }
 
