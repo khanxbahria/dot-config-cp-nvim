@@ -2,8 +2,8 @@
 
 using namespace std;
 
-// #pragma GCC optimize("Ofast,unroll-loops")
-// #pragma GCC target("avx,avx2,avx512,fma")
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
 
 template <typename A, typename B>
 ostream &operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
@@ -47,9 +47,7 @@ mt19937 RNG(chrono::steady_clock::now().time_since_epoch().count());
 #define SHUF(v) shuffle(all(v), RNG);
 // Use mt19937_64 for 64 bit random numbers.
 
-void solve()
-{
-    
+void solve(){
 }
 
 int main()
