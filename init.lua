@@ -12,8 +12,8 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
   use 'windwp/nvim-autopairs'
-
- use {
+  use "ellisonleao/gruvbox.nvim" 
+  use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
@@ -59,6 +59,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
+
 vim.o.tabstop = 4
 vim.o.softtabstop = 0
 vim.o.expandtab = true
@@ -68,16 +71,19 @@ vim.o.splitright = true
 vim.o.number = true
 vim.o.hlsearch = false
 
-vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
-vim.keymap.set("i", "kk", "<Esc>", { noremap = true })
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
-vim.keymap.set("i", "kj", "<Esc>", { noremap = true })
+-- vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
+-- vim.keymap.set("i", "kk", "<Esc>", { noremap = true })
+-- vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
+-- vim.keymap.set("i", "kj", "<Esc>", { noremap = true })
 
 
--- F3 to compile and run and clean
+-- F3 to compile and run
 vim.api.nvim_create_autocmd("FileType", { pattern = "cpp", 
     command = "nnoremap <buffer> <F3> :w<CR>:vsplit<CR>:set nonumber<CR>:te g++ -o %:t:r.out % && ./%:t:r.out<CR>i"})
 
+-- F4 to copy code
+vim.api.nvim_create_autocmd("FileType", { pattern = "cpp", 
+    command = "nnoremap <buffer> <F4> :%y+<CR>"})
 require('nvim-autopairs').setup {
     check_ts = true,
     enable_check_bracket_line = false
